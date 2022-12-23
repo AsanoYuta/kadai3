@@ -1,0 +1,38 @@
+<main>
+<p><%= flash[:notice] %></p>
+<div class="container">
+<div class="row">
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+<h2>User info</h2>
+<div id = "error_explanation">
+<% if @user.errors.any? %>
+  <h3><%= @user.errors.count %>error prohibited this book from being saved:</h3>
+  <ul>
+  <% @user.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <ui>
+<% end %>
+<% else %>
+<% end %>
+</div>
+<%= form_with model: @user do |f| %>
+  <div class="form-group">
+  <label for="inputName">Name</label>
+  <%= f.text_field :name, id:"name", class: 'form-control' %>
+  </div>
+  <div class="form-group">
+  <label for="inputImage">Image</label>
+  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*", class: 'form-control-file user_image' %>
+  </div>
+  <div class="form-group">
+  <label for="introduction">Introduction</label>
+  <%= f.text_area :introduction, id:"user_introduction", class: 'form-control introduction' %>
+  </div>
+  <div class="form-group">
+  <%= f.submit "Update User", class: "btn btn-secondary" %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
+</main>
